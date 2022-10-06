@@ -163,7 +163,7 @@ pub mod currency {
 	pub const GIGAWEI: Balance = 1_000_000_000;
 	pub const MICROEBAR: Balance = 1_000_000_000_000;
 	pub const MILLIEBAR: Balance = 1_000_000_000_000_000;
-	pub const FAC: Balance = 650_000_000;
+	pub const FAC: Balance = 650_000_000_000_000_000_000_000_000;
 	pub const KILOEBAR: Balance = 1_000_000_000_000_000_000_000;
 
 	pub const TRANSACTION_BYTE_FEE: Balance = 10 * MICROEBAR * SUPPLY_FACTOR;

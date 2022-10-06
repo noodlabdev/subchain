@@ -188,7 +188,7 @@ fn testnet_genesis(
 
 	let validators = initial_authorities.iter().map(|x| (x.0.clone(), STASH)).collect::<Vec<_>>();
 
-	const ENDOWMENT: Balance = 10_000_000 * FAC;
+	const ENDOWMENT: Balance = FAC;
 	const STASH: Balance = 100 * 1_000_000_000_000_000_000; // 100 OCT with 18 decimals
 
 	GenesisConfig {
