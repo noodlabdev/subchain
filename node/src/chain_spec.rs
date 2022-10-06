@@ -1,5 +1,5 @@
 use appchain_barnacle_runtime::{
-	currency::EBAR,
+	currency::FAC,
 	opaque::{Block, SessionKeys},
 	AccountId, BabeConfig, Balance, BalancesConfig, GenesisAccount, GenesisConfig, GrandpaConfig,
 	ImOnlineConfig, OctopusAppchainConfig, OctopusLposConfig, Precompiles, SessionConfig,
@@ -69,7 +69,7 @@ pub fn authority_keys_from_seed(
 	seed: &str,
 ) -> (AccountId, BabeId, GrandpaId, ImOnlineId, BeefyId, OctopusId) {
 	(
-		AccountId::from_str("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac").unwrap(),
+		AccountId::from_str("9500c80384DCAd166b1DC345eBa0B53dC21F5131").unwrap(),
 		get_from_seed::<BabeId>(seed),
 		get_from_seed::<GrandpaId>(seed),
 		get_from_seed::<ImOnlineId>(seed),
@@ -93,10 +93,10 @@ pub fn development_config() -> Result<ChainSpec, String> {
 				// Initial PoA authorities
 				vec![authority_keys_from_seed("Alice")],
 				// Sudo account
-				AccountId::from_str("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac").unwrap(),
+				AccountId::from_str("9500c80384DCAd166b1DC345eBa0B53dC21F5131").unwrap(),
 				// Pre-funded accounts
 				Some(
-					vec![AccountId::from_str("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac").unwrap()],
+					vec![AccountId::from_str("9500c80384DCAd166b1DC345eBa0B53dC21F5131").unwrap()],
 				),
 				true,
 			)
@@ -111,7 +111,7 @@ pub fn development_config() -> Result<ChainSpec, String> {
 		// Properties
 		Some(
 			serde_json::from_str(
-				"{\"tokenDecimals\": 18, \"tokenSymbol\": \"EBAR\", \"SS58Prefix\": 1284}",
+				"{\"tokenDecimals\": 18, \"tokenSymbol\": \"FAC\", \"SS58Prefix\": 1924}",
 			)
 			.expect("Provided valid json map"),
 		),
@@ -135,10 +135,10 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 				// Initial PoA authorities
 				vec![authority_keys_from_seed("Alice"), authority_keys_from_seed("Bob")],
 				// Sudo account
-				AccountId::from_str("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac").unwrap(),
+				AccountId::from_str("9500c80384DCAd166b1DC345eBa0B53dC21F5131").unwrap(),
 				// Pre-funded accounts
 				Some(
-					vec![AccountId::from_str("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac").unwrap()],
+					vec![AccountId::from_str("9500c80384DCAd166b1DC345eBa0B53dC21F5131").unwrap()],
 				),
 				true,
 			)
@@ -153,7 +153,7 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 		// Properties
 		Some(
 			serde_json::from_str(
-				"{\"tokenDecimals\": 18, \"tokenSymbol\": \"EBAR\", \"SS58Prefix\": 1284}",
+				"{\"tokenDecimals\": 18, \"tokenSymbol\": \"FAC\", \"SS58Prefix\": 1924}",
 			)
 			.expect("Provided valid json map"),
 		),
@@ -177,7 +177,7 @@ fn testnet_genesis(
 	let revert_bytecode = vec![0x60, 0x00, 0x60, 0x00, 0xFD];
 
 	let mut endowed_accounts: Vec<AccountId> = endowed_accounts.unwrap_or_else(|| {
-		vec![AccountId::from_str("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac").unwrap()]
+		vec![AccountId::from_str("9500c80384DCAd166b1DC345eBa0B53dC21F5131").unwrap()]
 	});
 	// endow all authorities.
 	initial_authorities.iter().map(|x| &x.0).for_each(|x| {
@@ -188,7 +188,7 @@ fn testnet_genesis(
 
 	let validators = initial_authorities.iter().map(|x| (x.0.clone(), STASH)).collect::<Vec<_>>();
 
-	const ENDOWMENT: Balance = 10_000_000 * EBAR;
+	const ENDOWMENT: Balance = 10_000_000 * FAC;
 	const STASH: Balance = 100 * 1_000_000_000_000_000_000; // 100 OCT with 18 decimals
 
 	GenesisConfig {
@@ -230,9 +230,9 @@ fn testnet_genesis(
 			anchor_contract: "octopus-anchor.testnet".to_string(),
 			asset_id_by_token_id: vec![("usdn.testnet".to_string(), 0)],
 			validators,
-			premined_amount: 1024 * EBAR,
+			premined_amount: 1024 * FAC,
 		},
-		octopus_lpos: OctopusLposConfig { era_payout: 2 * EBAR, ..Default::default() },
+		octopus_lpos: OctopusLposConfig { era_payout: 2 * FAC, ..Default::default() },
 		octopus_assets: Default::default(),
 		evm: EVMConfig {
 			// We need _some_ code inserted at the precompile address so that

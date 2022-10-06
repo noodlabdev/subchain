@@ -150,7 +150,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	state_version: 1,
 };
 
-/// EBAR, the native token, uses 18 decimals of precision.
+/// FAC, the native token, uses 18 decimals of precision.
 pub mod currency {
 	use super::Balance;
 
@@ -163,7 +163,7 @@ pub mod currency {
 	pub const GIGAWEI: Balance = 1_000_000_000;
 	pub const MICROEBAR: Balance = 1_000_000_000_000;
 	pub const MILLIEBAR: Balance = 1_000_000_000_000_000;
-	pub const EBAR: Balance = 1_000_000_000_000_000_000;
+	pub const FAC: Balance = 650_000_000;
 	pub const KILOEBAR: Balance = 1_000_000_000_000_000_000_000;
 
 	pub const TRANSACTION_BYTE_FEE: Balance = 10 * MICROEBAR * SUPPLY_FACTOR;
@@ -528,7 +528,7 @@ impl pallet_im_online::Config for Runtime {
 }
 
 parameter_types! {
-	pub const AssetDeposit: Balance = 100 * currency::EBAR * currency::SUPPLY_FACTOR;
+	pub const AssetDeposit: Balance = 100 * currency::FAC * currency::SUPPLY_FACTOR;
 	pub const ApprovalDeposit: Balance = 0;
 	pub const AssetsStringLimit: u32 = 50;
 	pub const MetadataDepositBase: Balance = currency::deposit(1,68);
@@ -556,8 +556,8 @@ impl pallet_assets::Config<pallet_assets::Instance1> for Runtime {
 }
 
 parameter_types! {
-	pub const ClassDeposit: Balance = 100 * currency::EBAR * currency::SUPPLY_FACTOR;
-	pub const InstanceDeposit: Balance = 1 * currency::EBAR * currency::SUPPLY_FACTOR;
+	pub const ClassDeposit: Balance = 100 * currency::FAC * currency::SUPPLY_FACTOR;
+	pub const InstanceDeposit: Balance = 1 * currency::FAC * currency::SUPPLY_FACTOR;
 	pub const KeyLimit: u32 = 32;
 	pub const ValueLimit: u32 = 256;
 }
